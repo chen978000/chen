@@ -163,6 +163,7 @@
 	</div>
 	<script>
 		window.onload = function(){
+	document.ontouchmove = function(e){ e.preventDefault(); }; 
 	var can = document.getElementById("canvas");//画布1
 	var ctx = can.getContext("2d");//画笔1
 	var can2 = document.getElementById("canvas2");//画布2
