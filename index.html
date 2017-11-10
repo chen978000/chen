@@ -190,8 +190,9 @@
 	can3.ontouchstart = function(ev){//点下画布3
 		easeAble = 1;//简单色有效值变为1
 		var ev =event || window.event;
-		x = ev.clientX-can3.offsetLeft-oMain.offsetLeft;
-		y = ev.clientY-can3.offsetTop-oMain.offsetTop;//获取鼠标位置
+		var touch = event.targetTouches[0]; 
+		x = touch.pageX-can3.offsetLeft-oMain.offsetLeft;
+		y = touch.pageY-can3.offsetTop-oMain.offsetTop;//获取鼠标位置
 		var colorDate = ctx3.getImageData(x, y, 1, 1);	//获取当前1像素的图像
 		var pixel = colorDate.data;//获取图像的像素颜色值
 		if(x<30){//判断是左
@@ -218,11 +219,12 @@
 	
 	document.ontouchend = function(ev){
 		var ev = event || window.event;
+		var touch = event.targetTouches[0]; 
 		if((type==0 || type==1 || type==2 ||type==3 ||type==8)&&drawAble==1){
 			drawAble = 0;
 			ctx2.clearRect(0, 0, can.width, can.height);
-			mx2 = ev.clientX-can.offsetLeft-oMain.offsetLeft;
-			my2 = ev.clientY-can.offsetTop-oMain.offsetTop;	
+			mx2 = touch.pageX-can.offsetLeft-oMain.offsetLeft;
+			my2 = touch.pageY-can.offsetTop-oMain.offsetTop;	
 			draw(ctx);
 		}else{
 			drawAble = 0;
@@ -231,10 +233,11 @@
 
 	document.ontouchmove = function(ev){
 		var ev = event || window.event;	
+		var touch = event.targetTouches[0]; 
 		if(drawAble==0) return;
 		if(type==0 || type==8){
-			mx2 = ev.clientX-can.offsetLeft-oMain.offsetLeft;
-			my2 = ev.clientY-can.offsetTop-oMain.offsetTop;
+			mx2 = touch.pageX-can.offsetLeft-oMain.offsetLeft;
+			my2 = touch.pageY-can.offsetTop-oMain.offsetTop;
 			draw(ctx);
 			mx1=mx2;
 			my1=my2;			
