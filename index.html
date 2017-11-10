@@ -186,7 +186,7 @@
 	var  easyStrokeColor;//声明简单边框色
 	var  easyFillColor;//声明简单填充色
 	var easeAble = 0;//声明简单色有效值为0；
-	can3.onmousedown = function(ev){//点下画布3
+	can3.ontouchstart = function(ev){//点下画布3
 		easeAble = 1;//简单色有效值变为1
 		var ev =event || window.event;
 		x = ev.clientX-can3.offsetLeft-oMain.offsetLeft;
@@ -208,13 +208,14 @@
 	var type=0;
 	var drawAble = 0;
 	var fillAble = 0;
-	can2.onmousedown = function(ev){
+	can2.ontouchstart = function(ev){
 		var ev = event || window.event;
 		drawAble = 1;
 		mx1 = ev.clientX-can.offsetLeft-oMain.offsetLeft;
 		my1 = ev.clientY-can.offsetTop-oMain.offsetTop;	
 	}
-	document.onmouseup = function(ev){
+	
+	document.ontouchend = function(ev){
 		var ev = event || window.event;
 		if((type==0 || type==1 || type==2 ||type==3 ||type==8)&&drawAble==1){
 			drawAble = 0;
@@ -227,7 +228,7 @@
 		}
 	}
 
-	document.onmousemove = function(ev){
+	document.ontouchmove = function(ev){
 		var ev = event || window.event;	
 		if(drawAble==0) return;
 		if(type==0 || type==8){
